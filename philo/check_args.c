@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 11:55:04 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/06 19:34:30 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/09 17:29:52 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,6 @@ int	check_args(char *argv[])
 {
 	int	i;
 
-	if ((argv[5] != NULL && ft_atoi(argv[5]) <= 0) || ft_atoi(argv[1]) <= 0)
-	{
-		ft_putstr_fd("Please make sure you specify a positive value for philosophers arg \
-and numbers of times each philosopher must eat arg\n", 2);
-		return (0);
-	}
 	i = 1;
 	while (argv[i])
 	{
@@ -65,6 +59,12 @@ and numbers of times each philosopher must eat arg\n", 2);
 			return (0);
 		}
 		++i;
+	}
+	if ((argv[5] != NULL && ft_atoi(argv[5]) == 0) || ft_atoi(argv[1]) == 0)
+	{
+		ft_putstr_fd("Please make sure you specify a positive value for philosophers arg \
+and numbers of times each philosopher must eat arg\n", 2);
+		return (0);
 	}
 	return (1);
 }
