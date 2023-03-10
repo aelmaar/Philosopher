@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:38:40 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 15:04:02 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:09:15 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	main(int argc, char *argv[])
 	if (argc > 4 && argc <= 6)
 	{
 		if (check_args(argv) == 0)
-			return (0);
+			return (FAILURE);
 		data = init_shared_data(argv);
 		if (data)
 		{
@@ -28,11 +28,11 @@ int	main(int argc, char *argv[])
 			if (philo == NULL)
 			{
 				free_all(data, philo);
-				return (0);
+				return (FAILURE);
 			}
 			if (init_processes_and_coordinate(philo, data) == 0)
-				return (0);
+				return (FAILURE);
 		}
 	}
-	return (1);
+	return (SUCCESS);
 }

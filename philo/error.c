@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:12:30 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 12:33:01 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:09:15 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	destroy_prev_shared_mutexes(pthread_mutex_t *mutexes, \
 			pthread_mutex_destroy(mutexes + i);
 			++i;
 		}
-		return (0);
+		return (FAILURE);
 	}
-	return (1);
+	return (SUCCESS);
 }

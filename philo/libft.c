@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:30:31 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/06 11:32:55 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:09:04 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_atoi(const char *str)
 	long	nb;
 
 	if (str == NULL)
-		return (0);
+		return (FAILURE);
 	nb = 0;
 	while ((*str >= 9 && *str <= 13) || *str == 32)
 		str++;

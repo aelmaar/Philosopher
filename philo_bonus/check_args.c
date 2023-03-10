@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 16:16:29 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/09 17:24:38 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:09:15 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	is_valid_arg(char *arg)
 	long	nb;
 
 	if (ft_strlen(arg) > 10)
-		return (0);
+		return (FAILURE);
 	nb = 0;
 	while (ft_isdigit(*arg))
 	{
@@ -40,10 +40,10 @@ static int	is_valid_arg(char *arg)
 		arg++;
 	}
 	if (*arg != '\0' && ft_isdigit(*arg) == 0)
-		return (0);
+		return (FAILURE);
 	if (nb > INT_MAX)
-		return (0);
-	return (1);
+		return (FAILURE);
+	return (SUCCESS);
 }
 
 int	check_args(char *argv[])
@@ -56,7 +56,7 @@ int	check_args(char *argv[])
 		if (is_valid_arg(argv[i]) == 0)
 		{
 			ft_putstr_fd("The arguments are not valid\n", 2);
-			return (0);
+			return (FAILURE);
 		}
 		++i;
 	}
@@ -64,7 +64,7 @@ int	check_args(char *argv[])
 	{
 		ft_putstr_fd("Please make sure you specify a positive value for philosophers arg \
 and numbers of times each philosopher must eat arg\n", 2);
-		return (0);
+		return (FAILURE);
 	}
-	return (1);
+	return (SUCCESS);
 }

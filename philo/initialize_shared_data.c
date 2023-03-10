@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:21:27 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 12:32:45 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:09:15 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ int	create_mutexes_and_asreal(t_shared_data *shared_data, char *argv)
 	if (shared_data->forks == NULL)
 	{
 		free(shared_data);
-		return (0);
+		return (FAILURE);
 	}
 	shared_data->asreal = malloc(ft_atoi(argv) * sizeof(time_t));
 	if (shared_data->asreal == NULL)
 	{
 		free(shared_data->forks);
 		free(shared_data);
-		return (0);
+		return (FAILURE);
 	}
-	return (1);
+	return (SUCCESS);
 }
 
 int	init_mutexes(t_shared_data *data)
@@ -42,7 +42,7 @@ int	init_mutexes(t_shared_data *data)
 		if (destroy_prev_shared_mutexes(data->forks, mutex_return, i) == 0)
 		{
 			pthread_error_message(i, "Error initializing the mutex for fork: ");
-			return (0);
+			return (FAILURE);
 		}
 		++i;
 	}
@@ -53,9 +53,9 @@ int	init_mutexes(t_shared_data *data)
 		destroy_prev_shared_mutexes(data->forks, mutex_return, \
 		data->philo_len);
 		ft_putstr_fd("Error initializing the mutex for printf\n", 2);
-		return (0);
+		return (FAILURE);
 	}
-	return (1);
+	return (SUCCESS);
 }
 
 t_shared_data	*init_shared_data(char *argv[])

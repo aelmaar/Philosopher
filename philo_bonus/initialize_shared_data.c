@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:37:49 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 15:03:37 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:09:15 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	open_semaphores(t_shared_data *data, char *arg)
 	if (data->forks == SEM_FAILED)
 	{
 		printf("SEM FAILED\n");
-		return (0);
+		return (FAILURE);
 	}
 	data->printf_guard = sem_open("/printf", O_CREAT, 0644, 1);
 	if (data->printf_guard == SEM_FAILED)
 	{
 		sem_close(data->forks);
 		printf("SEM FAILED\n");
-		return (0);
+		return (FAILURE);
 	}
 	data->max_eaten = sem_open("/eat_times", O_CREAT, 0644, 0);
 	if (data->max_eaten == SEM_FAILED)
@@ -37,9 +37,9 @@ int	open_semaphores(t_shared_data *data, char *arg)
 		sem_close(data->forks);
 		sem_close(data->printf_guard);
 		printf("SEM FAILED\n");
-		return (0);
+		return (FAILURE);
 	}
-	return (1);
+	return (SUCCESS);
 }
 
 t_shared_data	*init_shared_data(char *argv[])

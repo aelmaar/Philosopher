@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 10:42:27 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 14:59:15 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:09:24 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # include "unistd.h"
 # include "limits.h"
 
-// struct containing all the infos about the philosopher project
+# define FAILURE 0
+# define SUCCESS 1
 
 typedef struct s_shared_data
 {

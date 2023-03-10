@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:51:58 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 15:02:41 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:09:15 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,10 +131,10 @@ static int	init_processes(t_philo *philo, t_shared_data *data)
 			ft_putstr_fd("Error creating the process: ", 2);
 			ft_putnbr_fd(philo->philo_num, 2);
 			ft_putstr_fd("\n", 2);
-			return (0);
+			return (FAILURE);
 		}
 	}
-	return (1);
+	return (SUCCESS);
 }
 
 int	init_processes_and_coordinate(t_philo *philo, t_shared_data *data)
@@ -142,16 +142,16 @@ int	init_processes_and_coordinate(t_philo *philo, t_shared_data *data)
 	pthread_t	thread_watch_eat;
 
 	if (init_processes(philo, data) == 0)
-		return (0);
+		return (FAILURE);
 	if (pthread_create(&(thread_watch_eat), NULL, \
 	watch_eating, (void *)philo) != 0)
 	{
 		free_all(data, philo);
 		ft_putstr_fd("Error creating the thread in the main process\n", 2);
 		kill_processes(philo, data->philo_len);
-		return (0);
+		return (FAILURE);
 	}
 	waitpid(-1, NULL, 0);
 	kill_processes(philo, data->philo_len);
-	return (1);
+	return (SUCCESS);
 }

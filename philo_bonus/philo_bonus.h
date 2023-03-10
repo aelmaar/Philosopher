@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:44:22 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 15:00:18 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:09:34 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@
 # include "stdio.h"
 # include "limits.h"
 
-// struct containing the data that is shared between philosphers
+# define FAILURE 0
+# define SUCCESS 1
+
 typedef struct s_shared_data
 {
 	sem_t	*forks;
@@ -39,7 +41,6 @@ typedef struct s_shared_data
 	sem_t	*max_eaten;
 }	t_shared_data;
 
-// struct containing the data of every philospher
 typedef struct s_philo
 {
 	int				philo_num;
