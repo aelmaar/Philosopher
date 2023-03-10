@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:21:27 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 12:23:26 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:32:45 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,19 @@ int	init_mutexes(t_shared_data *data)
 	{
 		mutex_return = pthread_mutex_init(&(data->forks[i]), NULL);
 		if (destroy_prev_shared_mutexes(data->forks, mutex_return, i) == 0)
+		{
+			pthread_error_message(i, "Error initializing the mutex for fork: ");
 			return (0);
+		}
 		++i;
 	}
 	mutex_return = pthread_mutex_init(&(data->printf_guard), NULL);
 	if (destroy_prev_shared_mutexes(&(data->printf_guard), \
-		mutex_return, 0) == 0)
+		mutex_return, 1) == 0)
 	{
 		destroy_prev_shared_mutexes(data->forks, mutex_return, \
-		data->philo_len - 1);
+		data->philo_len);
+		ft_putstr_fd("Error initializing the mutex for printf\n", 2);
 		return (0);
 	}
 	return (1);
