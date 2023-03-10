@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:38:40 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/09 16:24:22 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 11:33:15 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 	t_philo			*philo;
 	t_shared_data	*data;
 
-	if (argc > 4)
+	if (argc > 4 && argc <= 6)
 	{
 		if (check_args(argv) == 0)
 			return (0);
