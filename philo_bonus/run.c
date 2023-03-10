@@ -6,13 +6,13 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:38:40 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 11:33:15 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:04:02 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_philo			*philo;
 	t_shared_data	*data;
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 	{
 		if (check_args(argv) == 0)
 			return (0);
-		data = initialize_philo_data(argv);
+		data = init_shared_data(argv);
 		if (data)
 		{
 			philo = malloc(ft_atoi(argv[1]) * sizeof(t_philo));

@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 12:51:58 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/09 17:20:48 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:02:41 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ static void	*death_or_done(void *arg)
 			sem_post(philo->data->max_eaten);
 			break ;
 		}
-		// usleep(100);
 	}
 	return (NULL);
 }
@@ -83,17 +82,17 @@ static void	*watch_eating(void *arg)
 	return (NULL);
 }
 
-static void    run_actions(t_philo *philo)
+static void	run_actions(t_philo *philo)
 {
 	philo->last_meal = timestamp_in_ms();
-	if (pthread_create(&(philo->watch_dead), NULL, death_or_done, (void *)philo) != 0)
+	if (pthread_create(&(philo->watch_dead), NULL, \
+	death_or_done, (void *)philo) != 0)
 	{
 		ft_putstr_fd("Error creating the thread in the process: ", 2);
 		ft_putnbr_fd(philo->philo_num, 2);
 		ft_putstr_fd("\n", 2);
 		exit(1);
 	}
-	// pthread_create(&(philo->watch_eating), NULL, philo_max_eating, (void *)philo);
 	while (1)
 	{
 		log_sleep("is thinking", 0, philo);
@@ -138,13 +137,14 @@ static int	init_processes(t_philo *philo, t_shared_data *data)
 	return (1);
 }
 
-int init_processes_and_coordinate(t_philo *philo, t_shared_data *data)
+int	init_processes_and_coordinate(t_philo *philo, t_shared_data *data)
 {
 	pthread_t	thread_watch_eat;
-	
+
 	if (init_processes(philo, data) == 0)
 		return (0);
-	if (pthread_create(&(thread_watch_eat), NULL, watch_eating, (void *)philo) != 0)
+	if (pthread_create(&(thread_watch_eat), NULL, \
+	watch_eating, (void *)philo) != 0)
 	{
 		free_all(data, philo);
 		ft_putstr_fd("Error creating the thread in the main process\n", 2);
@@ -153,5 +153,5 @@ int init_processes_and_coordinate(t_philo *philo, t_shared_data *data)
 	}
 	waitpid(-1, NULL, 0);
 	kill_processes(philo, data->philo_len);
-    return (1);
+	return (1);
 }

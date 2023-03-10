@@ -6,15 +6,15 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:30:15 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/08 15:43:54 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:03:54 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void    kill_processes(t_philo *philo, int last_process)
+void	kill_processes(t_philo *philo, int last_process)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < last_process)

@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 12:37:49 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/09 16:20:05 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:03:37 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	open_semaphores(t_shared_data *data, char *arg)
 		printf("SEM FAILED\n");
 		return (0);
 	}
-	data->printf_guard = sem_open("/printf", O_CREAT, 0644, 1); // understand the permission option
+	data->printf_guard = sem_open("/printf", O_CREAT, 0644, 1);
 	if (data->printf_guard == SEM_FAILED)
 	{
 		sem_close(data->forks);
@@ -42,13 +42,13 @@ int	open_semaphores(t_shared_data *data, char *arg)
 	return (1);
 }
 
-t_shared_data   *initialize_philo_data(char *argv[])
+t_shared_data	*init_shared_data(char *argv[])
 {
-    t_shared_data   *data;
+	t_shared_data	*data;
 
-    data = malloc(sizeof(t_shared_data));
-    if (data)
-    {
+	data = malloc(sizeof(t_shared_data));
+	if (data)
+	{
 		if (open_semaphores(data, argv[1]) == 0)
 		{
 			free(data);
@@ -63,6 +63,6 @@ t_shared_data   *initialize_philo_data(char *argv[])
 			data->philo_max_eaten = -1;
 		else
 			data->philo_max_eaten = ft_atoi(argv[5]);
-    }
-    return (data);
+	}
+	return (data);
 }
