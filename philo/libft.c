@@ -6,11 +6,11 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 13:30:31 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 15:09:04 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 15:16:41 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "unistd.h"
+#include "philo.h"
 
 static void	ft_putchar_fd(char c, int fd)
 {
