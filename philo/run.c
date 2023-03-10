@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:16:18 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 11:35:58 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:24:55 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	main(int argc, char *argv[])
 {
-	t_info			*data;
-	t_philos		*philo;
+	t_shared_data			*data;
+	t_philo					*philo;
 
 	if (argc > 4 && argc <= 6)
 	{
@@ -24,7 +24,7 @@ int	main(int argc, char *argv[])
 		data = init_shared_data(argv);
 		if (data)
 		{
-			philo = malloc(ft_atoi(argv[1]) * sizeof(t_philos));
+			philo = malloc(ft_atoi(argv[1]) * sizeof(t_philo));
 			if (philo == NULL)
 			{
 				free_all_data(data, philo);

@@ -6,13 +6,13 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:21:27 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/06 13:50:20 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:23:26 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	create_mutexes_and_asreal(t_info *shared_data, char *argv)
+int	create_mutexes_and_asreal(t_shared_data *shared_data, char *argv)
 {
 	shared_data->forks = malloc(ft_atoi(argv) * sizeof(pthread_mutex_t));
 	if (shared_data->forks == NULL)
@@ -30,7 +30,7 @@ int	create_mutexes_and_asreal(t_info *shared_data, char *argv)
 	return (1);
 }
 
-int	init_mutexes(t_info *data)
+int	init_mutexes(t_shared_data *data)
 {
 	int	i;
 	int	mutex_return;
@@ -54,11 +54,11 @@ int	init_mutexes(t_info *data)
 	return (1);
 }
 
-t_info	*init_shared_data(char *argv[])
+t_shared_data	*init_shared_data(char *argv[])
 {
-	t_info	*shared_data;
+	t_shared_data	*shared_data;
 
-	shared_data = malloc(sizeof(t_info));
+	shared_data = malloc(sizeof(t_shared_data));
 	if (shared_data)
 	{
 		shared_data->philo_len = ft_atoi(argv[1]);

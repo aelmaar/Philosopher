@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 20:56:09 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/06 13:33:09 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:24:03 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	*run_actions(void *arg)
 {
-	t_philos	*philo;
+	t_philo	*philo;
 
-	philo = (t_philos *)arg;
+	philo = (t_philo *)arg;
 	while (death_or_done(philo) == 0)
 	{
 		log_sleep("is thinking", 0, philo);
@@ -41,7 +41,7 @@ void	*run_actions(void *arg)
 	return (NULL);
 }
 
-void	init_philo_data(t_philos *philo, t_info *data, char *argv)
+void	init_philo_data(t_philo *philo, t_shared_data *data, char *argv)
 {
 	int	nbr_of_times_each_philosopher_must_eat;
 	int	i;
@@ -58,7 +58,7 @@ void	init_philo_data(t_philos *philo, t_info *data, char *argv)
 	}
 }
 
-int	create_threads(t_philos *philo, t_info *data, char *argv)
+int	create_threads(t_philo *philo, t_shared_data *data, char *argv)
 {
 	int	i;
 	int	thread_return;
@@ -81,7 +81,7 @@ int	create_threads(t_philos *philo, t_info *data, char *argv)
 	return (1);
 }
 
-void	coordinate_activites_of_threads(t_philos *philo, t_info *data)
+void	coordinate_activites_of_threads(t_philo *philo, t_shared_data *data)
 {
 	int	i;
 	int	is_philo_eat_enough;
@@ -110,8 +110,8 @@ void	coordinate_activites_of_threads(t_philos *philo, t_info *data)
 	}
 }
 
-int	init_threads_and_coordinate(t_philos *philo, \
-									t_info *data, char *argv[])
+int	init_threads_and_coordinate(t_philo *philo, \
+									t_shared_data *data, char *argv[])
 {
 	int	i;
 

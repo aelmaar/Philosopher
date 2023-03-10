@@ -6,13 +6,13 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:13:17 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/06 13:46:26 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:24:03 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*free_shared_data(t_info *data)
+void	*free_shared_data(t_shared_data *data)
 {
 	free(data->forks);
 	free(data->asreal);
@@ -20,7 +20,7 @@ void	*free_shared_data(t_info *data)
 	return (NULL);
 }
 
-void	destroy_shared_mutexes(t_info *data)
+void	destroy_shared_mutexes(t_shared_data *data)
 {
 	int	i;
 
@@ -30,7 +30,7 @@ void	destroy_shared_mutexes(t_info *data)
 	pthread_mutex_destroy(&(data->printf_guard));
 }
 
-void	free_all_data(t_info *data, t_philos *philo)
+void	free_all_data(t_shared_data *data, t_philo *philo)
 {
 	destroy_shared_mutexes(data);
 	free(data->forks);

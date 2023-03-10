@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 11:52:02 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/06 11:43:18 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 12:24:03 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ time_t	timestamp_in_ms(void)
 	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
 }
 
-int	death_or_done(t_philos *philo)
+int	death_or_done(t_philo *philo)
 {
 	int	is_done;
 
@@ -32,7 +32,7 @@ int	death_or_done(t_philos *philo)
 	return (is_done);
 }
 
-void	log_sleep(char *message, int sleeptime, t_philos *philo)
+void	log_sleep(char *message, int sleeptime, t_philo *philo)
 {
 	time_t	current_time;
 
