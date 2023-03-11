@@ -6,13 +6,13 @@
 #    By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/09 16:40:18 by ael-maar          #+#    #+#              #
-#    Updated: 2023/03/09 17:22:31 by ael-maar         ###   ########.fr        #
+#    Updated: 2023/03/11 18:24:07 by ael-maar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # BONUS SOURCE FILES 
 PHILO_BONUS_SRCS = run.c philo_bonus_utils.c libft.c initialize_shared_data.c init_processes.c \
-free.c check_args.c
+free.c check_args.c libft_extra.c
 
 # BONUS OBJECT FILES
 PHILO_BONUS_OBJS = $(PHILO_BONUS_SRCS:%.c=%.o)

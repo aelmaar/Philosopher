@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 15:41:08 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 15:15:20 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/11 17:51:57 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,3 +63,24 @@ int	ft_atoi(const char *str)
 	}
 	return (nb);
 }
+
+// char	*ft_strjoin(char const *s1, char const *s2)
+// {
+// 	char	*new_str;
+// 	size_t	i;
+
+// 	if (!s1 || !s2)
+// 		return (NULL);
+// 	new_str = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+// 	if (new_str)
+// 	{
+// 		i = 0;
+// 		while (*s1)
+// 			new_str[i++] = *(s1++);
+// 		while (*s2)
+// 			new_str[i++] = *(s2++);
+// 		new_str[i] = '\0';
+// 	}
+// 	free(s2);
+// 	return (new_str);
+// }

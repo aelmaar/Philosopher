@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:44:22 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 15:09:34 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/11 18:22:51 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_shared_data
 	time_t	running_time;
 	sem_t	*printf_guard;
 	sem_t	*max_eaten;
+	char	**data_guard;
 }	t_shared_data;
 
 typedef struct s_philo
@@ -50,6 +51,7 @@ typedef struct s_philo
 	pthread_t		watch_eating;
 	int				is_enough_eat;
 	t_shared_data	*data;
+	sem_t			*data_guard;
 }	t_philo;
 
 /**
@@ -122,5 +124,11 @@ void			ft_putstr_fd(char *s, int fd);
  * @brief write number to a fd.
 */
 void			ft_putnbr_fd(int n, int fd);
+
+char			*ft_strjoin(char const *s1, char const *s2);
+char			*ft_itoa(int n);
+
+void			unlink_shared_semaphores_and_free(t_shared_data *data, \
+										t_philo *philo);
 
 #endif
