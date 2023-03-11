@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:21:27 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 15:09:15 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 18:21:04 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,32 @@ int	create_mutexes_and_asreal(t_shared_data *shared_data, char *argv)
 	return (SUCCESS);
 }
 
+static int	init_other_shared_mutexes(t_shared_data *data)
+{
+	int	mutex_return;
+
+	mutex_return = pthread_mutex_init(&(data->printf_guard), NULL);
+	if (destroy_prev_shared_mutexes(&(data->printf_guard), \
+		mutex_return, 1) == FAILURE)
+	{
+		destroy_prev_shared_mutexes(data->forks, mutex_return, \
+		data->philo_len);
+		ft_putstr_fd("Error initializing the mutex for printf\n", 2);
+		return (FAILURE);
+	}
+	mutex_return = pthread_mutex_init(&(data->shared_guard), NULL);
+	if (destroy_prev_shared_mutexes(&(data->shared_guard), \
+		mutex_return, 1) == FAILURE)
+	{
+		destroy_prev_shared_mutexes(data->forks, mutex_return, \
+		data->philo_len);
+		pthread_mutex_destroy(&(data->printf_guard));
+		ft_putstr_fd("Error initializing the mutex for shared data\n", 2);
+		return (FAILURE);
+	}
+	return (SUCCESS);
+}
+
 int	init_mutexes(t_shared_data *data)
 {
 	int	i;
@@ -46,15 +72,8 @@ int	init_mutexes(t_shared_data *data)
 		}
 		++i;
 	}
-	mutex_return = pthread_mutex_init(&(data->printf_guard), NULL);
-	if (destroy_prev_shared_mutexes(&(data->printf_guard), \
-		mutex_return, 1) == 0)
-	{
-		destroy_prev_shared_mutexes(data->forks, mutex_return, \
-		data->philo_len);
-		ft_putstr_fd("Error initializing the mutex for printf\n", 2);
+	if (init_other_shared_mutexes(data) == FAILURE)
 		return (FAILURE);
-	}
 	return (SUCCESS);
 }
 

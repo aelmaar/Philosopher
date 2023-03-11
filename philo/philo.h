@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 10:42:27 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 15:09:24 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/11 15:38:36 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ typedef struct s_shared_data
 	int							is_all_eaten;
 	int							philo_died;
 	pthread_mutex_t				printf_guard;
+	pthread_mutex_t				shared_guard;
 }	t_shared_data;
 
 typedef struct s_philo
 {
 	t_shared_data			*data;
 	pthread_t				thread;
+	pthread_mutex_t			data_guard;
 	int						eat_times;
 	int						philo_num;
 }	t_philo;
@@ -99,7 +101,7 @@ void				pthread_error_message(int pthread_num, char *error_message);
  * initialized properly, and this is specific for forks.
  * @param mutexes The mutex.
  * @param mutex_error the mutex where it failed.
- * @param last_mutex the last mutex where it failed.
+ * @param last_mutex The last mutex where it failed.
  * @return return 0 if something failed, otherwise return 1 for success.
 */
 int					destroy_prev_shared_mutexes(pthread_mutex_t *mutexes, \
@@ -124,6 +126,12 @@ int					init_threads_and_coordinate(t_philo *philo, \
 									t_shared_data *data, char *argv[]);
 
 /**
+ * @brief Philosopher actions, eat, think or sleep
+ * @param arg The philosopher object
+*/
+void				*run_actions(void *arg);
+
+/**
  * @brief Print the message log with a sleep time.
  * @param message The log message.
  * @param sleeptime The sleep time.
@@ -136,6 +144,17 @@ void				log_sleep(char *message, int sleeptime, t_philo *philo);
  * @param data The shared data between all philosophers.
 */
 void				destroy_shared_mutexes(t_shared_data *data);
+
+/**
+ * @brief Destroy the previous mutex of every philosopher
+ * in case someone it's not initialized properly
+ * @param philo The philosopher object
+ * @param mutex_return The return mutex whether successeded or failed.
+ * @param last_mutex The last mutex where it failed.
+ * @return Return 0 if something failed, otherwise return 1 for success.
+*/
+int					destroy_prev_philo_mutexes(t_philo *philo, \
+						int mutex_error, int last_mutex);
 
 /**
  * @brief Destroy all the mutexes and free any memory allocated.

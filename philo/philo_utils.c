@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/05 11:52:02 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 15:00:45 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 18:24:46 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ int	death_or_done(t_philo *philo)
 	int	is_done;
 
 	is_done = 0;
+	pthread_mutex_lock(&(philo->data->shared_guard));
 	if (philo->data->a_philo_died == 1)
 		is_done = 1;
 	if (philo->data->is_all_eaten == 1)
 		is_done = 1;
+	pthread_mutex_unlock(&(philo->data->shared_guard));
 	return (is_done);
 }
 

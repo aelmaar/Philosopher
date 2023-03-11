@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 15:12:30 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 15:09:15 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/10 18:36:11 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,23 @@ int	destroy_prev_shared_mutexes(pthread_mutex_t *mutexes, \
 		while (i < last_mutex)
 		{
 			pthread_mutex_destroy(mutexes + i);
+			++i;
+		}
+		return (FAILURE);
+	}
+	return (SUCCESS);
+}
+
+int	destroy_prev_philo_mutexes(t_philo *philo, int mutex_error, int last_mutex)
+{
+	int	i;
+
+	if (mutex_error != 0)
+	{
+		i = 0;
+		while (i < last_mutex)
+		{
+			pthread_mutex_destroy(&(philo[i].data_guard));
 			++i;
 		}
 		return (FAILURE);
