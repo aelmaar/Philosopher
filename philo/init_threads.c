@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 20:56:09 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/11 14:11:31 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:51:46 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,9 @@ static int	create_threads(t_philo *philo, t_shared_data *data, char *argv)
 			pthread_error_message(i, "Error creating the thread: ");
 			return (FAILURE);
 		}
-		usleep(100);
 		++i;
 	}
-	return (1);
+	return (SUCCESS);
 }
 
 static int	check_if_a_philo_died_or_done(t_shared_data *data, t_philo *philo, \
@@ -116,7 +115,7 @@ int	init_threads_and_coordinate(t_philo *philo, \
 {
 	int	i;
 
-	if (create_threads(philo, data, argv[5]) == 0)
+	if (create_threads(philo, data, argv[5]) == FAILURE)
 		return (FAILURE);
 	coordinate_activites_of_threads(philo, data);
 	i = 0;
@@ -130,5 +129,5 @@ int	init_threads_and_coordinate(t_philo *philo, \
 		}
 		++i;
 	}
-	return (1);
+	return (SUCCESS);
 }

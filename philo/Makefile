@@ -6,7 +6,7 @@
 #    By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/06 12:29:30 by ael-maar          #+#    #+#              #
-#    Updated: 2023/03/11 15:27:01 by ael-maar         ###   ########.fr        #
+#    Updated: 2023/03/13 10:38:09 by ael-maar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ free.c error.c check_args.c actions.c
 PHILO_OBJS = $(PHILO_SRCS:%.c=%.o)
 
 #EXTRA FLAGS FOR CC
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g
+CFLAGS = -Wall -Wextra -Werror
 
 # FORCE REMOVE FILES
 RM = rm -rf
@@ -30,11 +30,11 @@ NAME = philo
 all: $(NAME)
 
 $(NAME): | $(PHILO_OBJS)
-	$(CC) $(CFLAGS) $| -o $@
+	@$(CC) $(CFLAGS) $| -o $@
 	@echo "\n\033[32m <==== COMPILING MANDATORY SUCCESSFULY ====> \033[0m\n"
 
 %.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "Compiling object ==> \c"
 	@echo $@
 	@sleep 0.100

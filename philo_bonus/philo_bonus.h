@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:44:22 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/11 18:22:51 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/13 11:54:25 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,10 +125,33 @@ void			ft_putstr_fd(char *s, int fd);
 */
 void			ft_putnbr_fd(int n, int fd);
 
+/**
+ * @brief join two string
+ * @param s1 first string
+ * @param s2 second string
+ * @return the joined string
+*/
 char			*ft_strjoin(char const *s1, char const *s2);
+
+/**
+ * @brief convert an int to a string
+ * @param n the int representation
+ * @return The converted integer
+*/
 char			*ft_itoa(int n);
 
+/**
+ * @brief close and unlink the shared semaphores and free the shared data
+ * @param data The shared data between all the philosophers
+ * @param philo The philosopher object
+*/
 void			unlink_shared_semaphores_and_free(t_shared_data *data, \
 										t_philo *philo);
+
+/**
+ * @brief Philosopher actions, eat, think or sleep.
+ * @param philo	The philosopher object.
+*/
+void			run_actions(t_philo *philo);
 
 #endif
