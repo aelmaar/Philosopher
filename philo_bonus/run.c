@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 11:38:40 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/11 17:49:12 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/13 12:58:55 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	open_philo_semaphores(t_philo *philo, t_shared_data *data)
 	i = 0;
 	while (i < data->philo_len)
 	{
-		philo[i].data_guard = sem_open(data->data_guard[i], O_CREAT, 0644, 1);
+		philo[i].data_guard = sem_open(data->data_guard[i], O_CREAT, 0600, 1);
 		if (philo[i].data_guard == SEM_FAILED)
 		{
 			unlink_prev_philo_semaphores(philo, data, i);
