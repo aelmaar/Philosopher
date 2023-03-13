@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/11 14:07:15 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/13 11:17:30 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:53:36 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ static void	take_forks(t_philo *philo)
 
 static void	philo_eat(t_philo *philo)
 {
-	pthread_mutex_lock(&(philo->data_guard));
-	philo->eat_times--;
-	pthread_mutex_unlock(&(philo->data_guard));
 	pthread_mutex_lock(&(philo->data->shared_guard));
 	philo->data->asreal[philo->philo_num] = timestamp_in_ms();
 	pthread_mutex_unlock(&(philo->data->shared_guard));
 	log_sleep("is eating", philo->data->time_to_eat, philo);
+	pthread_mutex_lock(&(philo->data_guard));
+	philo->eat_times--;
+	pthread_mutex_unlock(&(philo->data_guard));
 }
 
 static void	return_forks(t_philo *philo)

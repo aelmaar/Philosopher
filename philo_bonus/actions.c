@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:21:21 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/13 11:28:57 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:55:28 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,11 @@ static void	philo_eating(t_philo *philo)
 {
 	sem_wait(philo->data_guard);
 	philo->last_meal = timestamp_in_ms();
-	philo->is_enough_eat++;
 	sem_post(philo->data_guard);
 	log_sleep("is eating", philo->data->time_to_eat, philo);
+	sem_wait(philo->data_guard);
+	philo->is_enough_eat++;
+	sem_post(philo->data_guard);
 }
 
 static void	return_forks(t_philo *philo)
