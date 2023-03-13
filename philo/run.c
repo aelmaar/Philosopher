@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:16:18 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/13 10:47:58 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/03/13 12:07:04 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char *argv[])
 			philo = malloc(ft_atoi(argv[1]) * sizeof(t_philo));
 			if (philo == NULL)
 			{
-				free_all_data(data, philo); // pay attention
+				free_all_data(data, philo);
 				return (FAILURE);
 			}
 			if (init_threads_and_coordinate(philo, data, argv) == 0)
