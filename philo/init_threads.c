@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/04 20:56:09 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/13 13:50:51 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:37:31 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	check_if_a_philo_died_or_done(t_shared_data *data, t_philo *philo, \
 		data->a_philo_died = 1;
 		pthread_mutex_lock(&(data->printf_guard));
 		printf("%ld %d died\n", timestamp_in_ms() - \
-		data->running_time, philo->philo_num);
+		data->running_time, philo->philo_num + 1);
 		pthread_mutex_unlock(&(data->printf_guard));
 		pthread_mutex_unlock(&(data->shared_guard));
 		return (FAILURE);

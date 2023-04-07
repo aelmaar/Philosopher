@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:30:15 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/10 15:03:54 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:41:29 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	log_sleep(char *message, int sleeptime, t_philo *philo)
 	current_time = timestamp_in_ms() + sleeptime;
 	sem_wait(philo->data->printf_guard);
 	printf("%ld %d %s\n", timestamp_in_ms() - philo->data->running_time, \
-	philo->philo_num, message);
+	philo->philo_num + 1, message);
 	sem_post(philo->data->printf_guard);
 	while (timestamp_in_ms() < current_time)
-		usleep(10);
+		usleep(200);
 }

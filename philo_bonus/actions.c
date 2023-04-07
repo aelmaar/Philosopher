@@ -6,7 +6,7 @@
 /*   By: ael-maar <ael-maar@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 11:21:21 by ael-maar          #+#    #+#             */
-/*   Updated: 2023/03/13 13:55:28 by ael-maar         ###   ########.fr       */
+/*   Updated: 2023/04/07 17:48:28 by ael-maar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	*death_or_done(void *arg)
 		{
 			sem_wait(philo->data->printf_guard);
 			printf("%ld %d %s\n", timestamp_in_ms() - philo->data->running_time, \
-			philo->philo_num, "died");
+			philo->philo_num + 1, "died");
 			sem_post(philo->data_guard);
 			exit(0);
 		}
